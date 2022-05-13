@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
     }
 
     setGlobalLanguages(this.options);
-    this.notifier.hide('loader');
+    setTimeout(() => this.notifier.hide('loader'), 1000);
    }
  
    write() {
