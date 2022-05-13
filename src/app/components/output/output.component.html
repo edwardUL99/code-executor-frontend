@@ -1,0 +1,10 @@
+<div class="mt-2">
+  <div class="row mb-2">
+    <h4>{{headerText}}</h4>
+    <p *ngIf="outputReceived">Output received at: <span>{{outputReceived | date: 'd/M/yy, h:mm a'}}</span></p>
+  </div>
+  <div class="card shadow p-3" [style.height]="height + 'px'">
+    <div class="app-ace-editor" #outputEditor>
+    </div>
+  </div>
+</div>
