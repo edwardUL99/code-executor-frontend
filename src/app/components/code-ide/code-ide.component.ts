@@ -3,8 +3,6 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { catchError, Observable, throwError } from 'rxjs';
-import { getAceMode } from '../../acemodes';
-import { getBoilerplate } from '../../boilerplate';
 import { languageExists, loadLanguages, setGlobalLanguages } from '../../languages';
 import { ExecutionRequest } from '../../requests/executionrequest';
 import { ExecutionResponse } from '../../responses/executionresponse';
@@ -89,13 +87,15 @@ export class CodeIdeComponent implements OnInit, AfterViewInit {
     } else {
       this.output.setOutput(r.stdout);
     }
+
+    this.notifier.hide('execution');
   }
 
   execute() {
     if (this.editor) {
       this.output.clear();
       const value = this.editor.getValue();
-      this.notifier.notify('success', 'Code sent to server for execution, please wait');
+      this.notifier.notify('success', 'Code sent to server for execution, please wait', 'execution');
       
       const request = new ExecutionRequest(this.language, value);
       this.executor.execute(request)
