@@ -89,13 +89,15 @@ export class CodeIdeComponent implements OnInit, AfterViewInit {
     } else {
       this.output.setOutput(r.stdout);
     }
+
+    this.notifier.hide('execution');
   }
 
   execute() {
     if (this.editor) {
       this.output.clear();
       const value = this.editor.getValue();
-      this.notifier.notify('success', 'Code sent to server for execution, please wait');
+      this.notifier.notify('success', 'Code sent to server for execution, please wait', 'execution');
       
       const request = new ExecutionRequest(this.language, value);
       this.executor.execute(request)
