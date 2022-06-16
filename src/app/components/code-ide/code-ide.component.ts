@@ -86,6 +86,7 @@ export class CodeIdeComponent implements OnInit, AfterViewInit {
   private handleResponse(r: ExecutionResponse) {
     if (r.error) {
       this.output.setError(r.error);
+      this.notifier.notify('error', 'An error occurred during execution, see error output for details');
     } else {
       this.output.setOutput(r.stdout);
     }
